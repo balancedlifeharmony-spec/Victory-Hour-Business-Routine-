@@ -1,0 +1,626 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Victory Hour - 30 Minutes to Business Success</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            color: white;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .tagline {
+            font-size: 1.2em;
+            font-weight: 300;
+            opacity: 0.95;
+        }
+        
+        .content-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .phase {
+            margin-bottom: 40px;
+            padding: 25px;
+            border-left: 5px solid #667eea;
+            background: #f8f9ff;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .phase-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .phase-title-section {
+            display: flex;
+            align-items: center;
+            flex: 1;
+        }
+        
+        .time-badge {
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-right: 15px;
+            font-size: 0.9em;
+        }
+        
+        .phase-title {
+            font-size: 1.5em;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .mini-timer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(102, 126, 234, 0.1);
+            padding: 10px 15px;
+            border-radius: 10px;
+        }
+        
+        .mini-timer-display {
+            font-size: 1.5em;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+            color: #667eea;
+            min-width: 80px;
+        }
+        
+        .mini-timer-btn {
+            padding: 8px 15px;
+            font-size: 0.9em;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        .mini-timer-btn:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        }
+        
+        .mini-timer-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .btn-start-mini {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .btn-pause-mini {
+            background: #ff9800;
+            color: white;
+        }
+        
+        .btn-reset-mini {
+            background: #f44336;
+            color: white;
+        }
+        
+        .phase ul {
+            margin: 15px 0 15px 30px;
+        }
+        
+        .phase li {
+            margin-bottom: 10px;
+        }
+        
+        .example {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            font-style: italic;
+            color: #555;
+            margin: 10px 0;
+            border-left: 3px solid #764ba2;
+        }
+        
+        .rule {
+            background: #ffe6e6;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            color: #d63031;
+            margin: 10px 0;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 3px solid #ffc107;
+        }
+        
+        .cta {
+            text-align: center;
+            padding: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        
+        .cta-text {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .references {
+            background: #f0f0f0;
+            padding: 30px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+        
+        .references h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        
+        .reference-item {
+            margin-bottom: 15px;
+            padding: 12px;
+            background: white;
+            border-radius: 8px;
+        }
+        
+        .reference-item a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        .reference-item a:hover {
+            text-decoration: underline;
+            color: #764ba2;
+        }
+        
+        footer {
+            background: #2d3436;
+            color: white;
+            padding: 30px;
+            text-align: center;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+        
+        footer strong {
+            color: #667eea;
+            font-size: 1.2em;
+        }
+        
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        
+        footer a:hover {
+            color: #764ba2;
+        }
+        
+        .emoji {
+            font-size: 1.3em;
+            margin-right: 5px;
+        }
+        
+        .phase.active {
+            border-left-color: #4CAF50;
+            background: #f0fff4;
+        }
+        
+        .phase.completed {
+            opacity: 0.7;
+            border-left-color: #aaa;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .content-card {
+                padding: 25px;
+            }
+            
+            .phase {
+                padding: 15px;
+            }
+            
+            .phase-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .mini-timer {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .mini-timer-display {
+                font-size: 1.3em;
+            }
+            
+            .mini-timer-btn {
+                padding: 6px 12px;
+                font-size: 0.85em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><span class="emoji">🕒</span> Victory Hour Business Routine</h1>
+            <p class="tagline">30 Minutes to Transform Your Business, One Day at a Time</p>
+        </header>
+        
+        <div class="content-card">
+            <div class="phase" id="phase1">
+                <div class="phase-header">
+                    <div class="phase-title-section">
+                        <span class="time-badge">0:00 – 5:00</span>
+                        <h2 class="phase-title">Ignite (Mindset)</h2>
+                    </div>
+                    <div class="mini-timer">
+                        <div class="mini-timer-display" id="timer1">5:00</div>
+                        <button class="mini-timer-btn btn-start-mini" onclick="startTimer(1, 300)">Start</button>
+                        <button class="mini-timer-btn btn-pause-mini" onclick="pauseTimer(1)" disabled id="pause1">Pause</button>
+                        <button class="mini-timer-btn btn-reset-mini" onclick="resetTimer(1, 300)">Reset</button>
+                    </div>
+                </div>
+                <ul>
+                    <li><strong>Quick gratitude or intention:</strong> Write 1 thing you're grateful for + 1 thing you'll achieve today.</li>
+                </ul>
+                <div class="example">
+                    Example: "Grateful for health. Today I'll finish my pitch email."
+                </div>
+                <ul>
+                    <li>Play a pump-up track or sip your coffee/tea → signal your brain that it's <em>go-time</em>.</li>
+                </ul>
+            </div>
+            
+            <div class="phase" id="phase2">
+                <div class="phase-header">
+                    <div class="phase-title-section">
+                        <span class="time-badge">5:00 – 15:00</span>
+                        <h2 class="phase-title">Attack (One High-Impact Task)</h2>
+                    </div>
+                    <div class="mini-timer">
+                        <div class="mini-timer-display" id="timer2">10:00</div>
+                        <button class="mini-timer-btn btn-start-mini" onclick="startTimer(2, 600)">Start</button>
+                        <button class="mini-timer-btn btn-pause-mini" onclick="pauseTimer(2)" disabled id="pause2">Pause</button>
+                        <button class="mini-timer-btn btn-reset-mini" onclick="resetTimer(2, 600)">Reset</button>
+                    </div>
+                </div>
+                <ul>
+                    <li>Choose <strong>one needle-mover</strong> task only — something that pushes your business forward.
+                        <ul style="margin-top: 10px;">
+                            <li>Write 1 outreach email</li>
+                            <li>Sketch 1 product idea</li>
+                            <li>Research 1 competitor</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="rule">
+                    Rule: No social media, no distractions — just deep focus.
+                </div>
+                <div class="highlight">
+                    👉 10 minutes daily = 70 minutes a week of pure progress on <em>what matters most</em>.
+                </div>
+            </div>
+            
+            <div class="phase" id="phase3">
+                <div class="phase-header">
+                    <div class="phase-title-section">
+                        <span class="time-badge">15:00 – 25:00</span>
+                        <h2 class="phase-title">Build (Small Wins Stack)</h2>
+                    </div>
+                    <div class="mini-timer">
+                        <div class="mini-timer-display" id="timer3">10:00</div>
+                        <button class="mini-timer-btn btn-start-mini" onclick="startTimer(3, 600)">Start</button>
+                        <button class="mini-timer-btn btn-pause-mini" onclick="pauseTimer(3)" disabled id="pause3">Pause</button>
+                        <button class="mini-timer-btn btn-reset-mini" onclick="resetTimer(3, 600)">Reset</button>
+                    </div>
+                </div>
+                <ul>
+                    <li>Knock out <strong>two quick wins</strong> that take less than 5 minutes each.
+                        <ul style="margin-top: 10px;">
+                            <li>Reply to a customer message</li>
+                            <li>Update yesterday's notes</li>
+                            <li>Record a 30-sec voice memo with an idea</li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="highlight">
+                    This makes your brain <em>feel momentum</em> and builds confidence.
+                </div>
+            </div>
+            
+            <div class="phase" id="phase4">
+                <div class="phase-header">
+                    <div class="phase-title-section">
+                        <span class="time-badge">25:00 – 30:00</span>
+                        <h2 class="phase-title">Reflect & Reset</h2>
+                    </div>
+                    <div class="mini-timer">
+                        <div class="mini-timer-display" id="timer4">5:00</div>
+                        <button class="mini-timer-btn btn-start-mini" onclick="startTimer(4, 300)">Start</button>
+                        <button class="mini-timer-btn btn-pause-mini" onclick="pauseTimer(4)" disabled id="pause4">Pause</button>
+                        <button class="mini-timer-btn btn-reset-mini" onclick="resetTimer(4, 300)">Reset</button>
+                    </div>
+                </div>
+                <ul>
+                    <li>Write down in 2–3 sentences what you did and what the next step is.</li>
+                </ul>
+                <div class="example">
+                    Example: "Sent 1 outreach email. Next: prepare a short follow-up offer."
+                </div>
+                <ul>
+                    <li>End by saying out loud: <em>"Business is built brick by brick. I won today."</em></li>
+                </ul>
+            </div>
+            
+            <div class="cta">
+                <div class="cta-text">✅ That's it. 30 minutes. Non-negotiable. Consistent.</div>
+                <p style="margin-top: 15px; font-size: 1.1em;">Over time, those micro-bricks = a skyscraper.</p>
+            </div>
+        </div>
+        
+        <div class="references">
+            <h2>Scientific Research Supporting This Method</h2>
+            <div class="reference-item">
+                <strong>Gratitude & Performance:</strong> <a href="https://greatergood.berkeley.edu/article/item/how_gratitude_changes_you_and_your_brain" target="_blank">How Gratitude Changes You and Your Brain</a> - UC Berkeley Greater Good Science Center
+            </div>
+            <div class="reference-item">
+                <strong>Deep Work & Focus:</strong> <a href="https://pubmed.ncbi.nlm.nih.gov/28293029/" target="_blank">The Neuroscience of Focus and Productivity</a> - National Center for Biotechnology Information
+            </div>
+            <div class="reference-item">
+                <strong>Small Wins Theory:</strong> <a href="https://hbr.org/2011/05/the-power-of-small-wins" target="_blank">The Power of Small Wins</a> - Harvard Business Review (Based on research by Teresa Amabile)
+            </div>
+            <div class="reference-item">
+                <strong>Implementation Intentions:</strong> <a href="https://psycnet.apa.org/record/1999-10128-004" target="_blank">Implementation Intentions and Goal Achievement</a> - American Psychological Association
+            </div>
+            <div class="reference-item">
+                <strong>Reflection & Learning:</strong> <a href="https://www.hbs.edu/ris/Publication%20Files/14-093_defe8327-eeb6-40c3-aafe-26194181cfd2.pdf" target="_blank">Learning by Thinking: How Reflection Improves Performance</a> - Harvard Business School
+            </div>
+        </div>
+        
+        <footer>
+            <p><strong>Built by Victory Hour Multimedia Inc.</strong></p>
+            <p style="margin-top: 10px;">
+                🌐 <a href="http://www.victoryhourmedia.com" target="_blank">www.victoryhourmedia.com</a> | 
+                ✉️ <a href="mailto:info@victoryhourmedia.com">info@victoryhourmedia.com</a>
+            </p>
+            <p style="margin-top: 15px; font-style: italic; opacity: 0.9;">
+                We build brands that lead. From strategy to design to digital presence—your growth is our mission.
+            </p>
+        </footer>
+    </div>
+    
+    <script>
+        const timers = {
+            1: { remaining: 300, interval: null, total: 300 },
+            2: { remaining: 600, interval: null, total: 600 },
+            3: { remaining: 600, interval: null, total: 600 },
+            4: { remaining: 300, interval: null, total: 300 }
+        };
+        
+        let audioContext = null;
+        
+        function initAudio() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+            }
+        }
+        
+        function playCompletionSound() {
+            initAudio();
+            
+            const now = audioContext.currentTime;
+            
+            // Create a more prominent alarm sound with multiple beeps
+            for (let i = 0; i < 3; i++) {
+                const startTime = now + (i * 0.4);
+                
+                // Main beep
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.setValueAtTime(880, startTime); // A5 note - clear and attention-grabbing
+                oscillator.type = 'square'; // Square wave for more alarm-like sound
+                
+                gainNode.gain.setValueAtTime(0.4, startTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, startTime + 0.3);
+                
+                oscillator.start(startTime);
+                oscillator.stop(startTime + 0.3);
+                
+                // Harmonic for richer sound
+                const oscillator2 = audioContext.createOscillator();
+                const gainNode2 = audioContext.createGain();
+                
+                oscillator2.connect(gainNode2);
+                gainNode2.connect(audioContext.destination);
+                
+                oscillator2.frequency.setValueAtTime(1318.51, startTime); // E6 - fifth above
+                oscillator2.type = 'sine';
+                
+                gainNode2.gain.setValueAtTime(0.2, startTime);
+                gainNode2.gain.exponentialRampToValueAtTime(0.01, startTime + 0.3);
+                
+                oscillator2.start(startTime);
+                oscillator2.stop(startTime + 0.3);
+            }
+            
+            // Victory melody after the alarm beeps
+            const melodyStart = now + 1.5;
+            const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+            
+            notes.forEach((freq, index) => {
+                const noteStart = melodyStart + (index * 0.15);
+                
+                const osc = audioContext.createOscillator();
+                const gain = audioContext.createGain();
+                
+                osc.connect(gain);
+                gain.connect(audioContext.destination);
+                
+                osc.frequency.setValueAtTime(freq, noteStart);
+                osc.type = 'sine';
+                
+                gain.gain.setValueAtTime(0.25, noteStart);
+                gain.gain.exponentialRampToValueAtTime(0.01, noteStart + 0.3);
+                
+                osc.start(noteStart);
+                osc.stop(noteStart + 0.3);
+            });
+        }
+        
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+        
+        function updateDisplay(timerNum) {
+            document.getElementById(`timer${timerNum}`).textContent = formatTime(timers[timerNum].remaining);
+        }
+        
+        function startTimer(timerNum, duration) {
+            if (timers[timerNum].interval) return;
+            
+            initAudio();
+            
+            const startBtn = document.querySelector(`#phase${timerNum} .btn-start-mini`);
+            const pauseBtn = document.getElementById(`pause${timerNum}`);
+            
+            startBtn.disabled = true;
+            pauseBtn.disabled = false;
+            
+            document.getElementById(`phase${timerNum}`).classList.add('active');
+            
+            timers[timerNum].interval = setInterval(() => {
+                if (timers[timerNum].remaining > 0) {
+                    timers[timerNum].remaining--;
+                    updateDisplay(timerNum);
+                    
+                    if (timers[timerNum].remaining === 0) {
+                        completeTimer(timerNum);
+                    }
+                }
+            }, 1000);
+        }
+        
+        function pauseTimer(timerNum) {
+            if (timers[timerNum].interval) {
+                clearInterval(timers[timerNum].interval);
+                timers[timerNum].interval = null;
+                
+                const startBtn = document.querySelector(`#phase${timerNum} .btn-start-mini`);
+                const pauseBtn = document.getElementById(`pause${timerNum}`);
+                
+                startBtn.disabled = false;
+                pauseBtn.disabled = true;
+                startBtn.textContent = 'Resume';
+            }
+        }
+        
+        function resetTimer(timerNum, duration) {
+            if (timers[timerNum].interval) {
+                clearInterval(timers[timerNum].interval);
+                timers[timerNum].interval = null;
+            }
+            
+            timers[timerNum].remaining = duration;
+            updateDisplay(timerNum);
+            
+            const startBtn = document.querySelector(`#phase${timerNum} .btn-start-mini`);
+            const pauseBtn = document.getElementById(`pause${timerNum}`);
+            
+            startBtn.disabled = false;
+            pauseBtn.disabled = true;
+            startBtn.textContent = 'Start';
+            
+            document.getElementById(`phase${timerNum}`).classList.remove('active', 'completed');
+        }
+        
+        function completeTimer(timerNum) {
+            clearInterval(timers[timerNum].interval);
+            timers[timerNum].interval = null;
+            
+            const startBtn = document.querySelector(`#phase${timerNum} .btn-start-mini`);
+            const pauseBtn = document.getElementById(`pause${timerNum}`);
+            
+            startBtn.disabled = false;
+            pauseBtn.disabled = true;
+            startBtn.textContent = 'Restart';
+            
+            document.getElementById(`phase${timerNum}`).classList.remove('active');
+            document.getElementById(`phase${timerNum}`).classList.add('completed');
+            
+            playCompletionSound();
+            
+            const phaseNames = ['', 'Ignite (Mindset)', 'Attack (High-Impact Task)', 'Build (Small Wins)', 'Reflect & Reset'];
+            
+            setTimeout(() => {
+                alert(`🎉 ${phaseNames[timerNum]} Complete!\n\nGreat work! ${timerNum === 4 ? 'Business is built brick by brick. You won today!' : 'Ready for the next phase?'}`);
+            }, 500);
+        }
+    </script>
+</body>
+</html>
